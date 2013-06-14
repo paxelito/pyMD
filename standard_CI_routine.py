@@ -47,6 +47,7 @@ if __name__ == '__main__':
 						if os.path.isfile('/data/md/tools/script/generic_random_hypothesis.py'):
 							try:
 								stringToExecute = 'python /data/md/tools/script/generic_random_hypothesis.py -s 1 ' + filname + ' > ' + randomHypFileName
+								print 'executing ', stringToExecute
 								os.system(stringToExecute)
 							except:
 								print 'ERROR: Problem with generic_random_hypothesis.py generation'	
@@ -57,6 +58,7 @@ if __name__ == '__main__':
 							if exeRight == 1:
 								try:
 									stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + filname + ' 1 1000 1 > ' + clusterFileName
+									print 'executing ', stringToExecute
 									os.system(stringToExecute)
 								except:
 									print 'ERROR: Problem with generic_trajectory_clusters analysis on trajectory file'	
@@ -66,6 +68,7 @@ if __name__ == '__main__':
 							if exeRight == 1:
 								try:
 									stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + randomHypFileName + ' 1 1000 0 > ' + clusterNullFileName
+									print 'executing ', stringToExecute
 									os.system(stringToExecute)
 								except:
 									print 'ERROR: Problem with generic_trajectory_clusters analysis on null hypotesis'	
@@ -76,12 +79,16 @@ if __name__ == '__main__':
 							if exeRight == 1:
 								try:
 									stringToExecute = 'python /data/md/tools/script/sorted_clusters.py ' + clusterFileName + ' ' + clusterNullFileName + ' -sci -n30 > ' + final_ci_fileName
+									print 'executing ', stringToExecute
 									os.system(stringToExecute)
 									stringToExecute = 'python /data/md/tools/script/sorted_clusters.py ' + clusterFileName + ' ' + clusterNullFileName + ' -sn_ci -n30 > ' + final_nci_fileName
+									print 'executing ', stringToExecute
 									os.system(stringToExecute)
 									stringToExecute = 'python /data/md/tools/script/sorted_clusters.py ' + clusterFileName + ' ' + clusterNullFileName + ' -st_ci -n30 > ' + final_tci_fileName
+									print 'executing ', stringToExecute
 									os.system(stringToExecute)
 									stringToExecute = 'python /data/md/tools/script/sorted_clusters.py ' + clusterFileName + ' ' + clusterNullFileName + ' -sz -n30 > ' + final_z_fileName
+									print 'executing ', stringToExecute
 									os.system+(stringToExecute)						
 								except:
 									print 'ERROR: Problem with clustering ranking procedure'	
