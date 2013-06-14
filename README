@@ -1,3 +1,4 @@
 Standard Cluster Index Scriptss Repository
+----------------------------------------------------------
 
 standard_CI_routine.py Simple routine to perform the cluster index analysis on all the files contained within the file system starting from a specific path. The routine scans the file system processing all the files recognized as trajectories. 
