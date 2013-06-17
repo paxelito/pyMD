@@ -6,6 +6,7 @@ import sys, os
 import glob
 from argparse import ArgumentParser
 
+# Input parameters definition 
 if __name__ == '__main__':
 	parser = ArgumentParser(
 				description='Routine to perform the cluster index analysis on different trajectories stored in different folders.'
@@ -26,13 +27,15 @@ if __name__ == '__main__':
 		# If a trajectory file is found 
 		trajFiles = glob.glob(os.path.join(root,args.trajsubStr))
 		if len(trajFiles) > 0:
-			for trajFile in trajFiles:
+			for trajFile in trajFiles: # For each file
 				count += 1
+				# File name extraction and extension removing 
 				filname = os.path.basename(trajFile)
 				filnameNoExt = os.path.splitext(filname)[0]
+				# Compute the analysis progress 
 				percentage = count / args.filesNumber * 100
 				print "|- ANALYSING TRAJECTORY ", filname, ' ', percentage, '% completed'
-				# create file names according to the different step of the analysis
+				# create file names according to the different steps of the analysis
 				randomHypFileName = filnameNoExt + '.rnd'
 				clusterFileName = filnameNoExt + '.clusters'
 				clusterNullFileName = filnameNoExt + '.rnd.clusters'
