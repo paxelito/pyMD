@@ -13,7 +13,8 @@ if __name__ == '__main__':
 				, epilog='''Remember to use a distinctive substring in naming the trajectory files. ''') 
 	parser.add_argument('-p', '--strPath', help='Path where trajectories are stored.', default='./')
 	parser.add_argument('-s', '--trajsubStr', help='trajectory filename', default='')
-	parser.add_argument('-f','--filesNumber', type=float, help='Number of trajectories to analyse', default=100.00)
+	parser.add_argument('-f', '--filesNumber', type=float, help='Number of trajectories to analyse', default=100.00)
+	parser.add_argument('-e', '--sampleType', type=int, help='Sampling method, normal or GA', default=0)
 	args = parser.parse_args()
 	
 	# Go into the folder containing the trajectories
@@ -59,25 +60,46 @@ if __name__ == '__main__':
 							exeRight = 0
 				
 					# Trajectory cluster creation
-					if os.path.isfile('/data/md/tools/bin/generic_trajectory_clusters'):
-						if exeRight == 1:
-							try:
-								stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + filname + ' 1 1000 1 > ' + clusterFileName
-								print '\t|- Executing ', stringToExecute
-								os.system(stringToExecute)
-							except:
-								print 'ERROR: Problem with generic_trajectory_clusters analysis on trajectory file'	
-								exeRight = 0
+					if sampleType == 0:
+						if os.path.isfile('/data/md/tools/bin/generic_trajectory_clusters'):
+							if exeRight == 1:
+								try:
+									stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + filname + ' 1 1000 1 > ' + clusterFileName
+									print '\t|- Executing ', stringToExecute
+									os.system(stringToExecute)
+								except:
+									print 'ERROR: Problem with generic_trajectory_clusters analysis on trajectory file'	
+									exeRight = 0
 					
-						# Null hypotesis cluster creation
-						if exeRight == 1:
-							try:
-								stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + randomHypFileName + ' 1 1000 0 > ' + clusterNullFileName
-								print '\t|- Executing ', stringToExecute
-								os.system(stringToExecute)
-							except:
-								print 'ERROR: Problem with generic_trajectory_clusters analysis on null hypotesis'	
-								exeRight = 0
+							# Null hypotesis cluster creation
+							if exeRight == 1:
+								try:
+									stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + randomHypFileName + ' 1 1000 0 > ' + clusterNullFileName
+									print '\t|- Executing ', stringToExecute
+									os.system(stringToExecute)
+								except:
+									print 'ERROR: Problem with generic_trajectory_clusters analysis on null hypotesis'	
+									exeRight = 0
+					else:
+						if os.path.isfile('/data/md/tools/bin/generic_trajectory_clusters'):
+							if exeRight == 1:
+								try:
+									stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + filname + ' 1 1000 1 > ' + clusterFileName
+									print '\t|- Executing ', stringToExecute
+									os.system(stringToExecute)
+								except:
+									print 'ERROR: Problem with generic_trajectory_clusters analysis on trajectory file'	
+									exeRight = 0
+					
+							# Null hypotesis cluster creation
+							if exeRight == 1:
+								try:
+									stringToExecute = '/data/md/tools/bin/generic_trajectory_clusters ' + randomHypFileName + ' 1 1000 0 > ' + clusterNullFileName
+									print '\t|- Executing ', stringToExecute
+									os.system(stringToExecute)
+								except:
+									print 'ERROR: Problem with generic_trajectory_clusters analysis on null hypotesis'	
+									exeRight = 0					
 					
 					# Clustering ordering 
 					if os.path.isfile('/data/md/tools/script/sorted_clusters.py'):
