@@ -4,6 +4,7 @@
 
 import sys, os
 import glob
+import ci_library as cil
 from argparse import ArgumentParser
 
 # Input parameters definition 
@@ -31,7 +32,7 @@ if __name__ == '__main__':
 			for trajFile in trajFiles: # For each file
 				count += 1
 				# File name extraction and extension removing 
-				clusterIndexComputation(tmpStrPath='',tmpTrajFile=trajFile,tmpFilesNumber=filesNumber,tmpSamplingMethod=sampleType)
+				cil.clusterIndexComputation(tmpStrPath='',tmpTrajFile=trajFile,tmpFilesNumber=filesNumber,tmpSamplingMethod=sampleType, tmpCount=count)
 				# filname = os.path.basename(trajFile)
 # 				filnameNoExt = os.path.splitext(filname)[0]
 # 				# Compute the analysis progress 

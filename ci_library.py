@@ -8,15 +8,15 @@
 import sys, os
 import glob
 
-def clusterIndexComputation(tmpStrPath='',tmpTrajFile='handmade.traj',tmpFilesNumber=1,tmpSamplingMethod=0):
+def clusterIndexComputation(tmpStrPath='',tmpTrajFile='handmade.traj',tmpFilesNumber=1,tmpSamplingMethod=0,tmpCount=1):
 	# File name extraction and extension removing 
-				if strPath != '':
+				if tmpStrPath != '':
 					strPath = os.path.abspath(tmpStrPath)
 					os.chdir(tmpStrPath)
 				filname = os.path.basename(tmpTrajFile)
 				filnameNoExt = os.path.splitext(filname)[0]
 				# Compute the analysis progress 
-				percentage = count / tmpFilesNumber * 100
+				percentage = tmpCount / tmpFilesNumber * 100
 				print "|- ANALYSING TRAJECTORY ", filname, ' ', percentage, '% completed'
 				# create file names according to the different steps of the analysis
 				randomHypFileName = filnameNoExt + '.rnd'
@@ -27,7 +27,7 @@ def clusterIndexComputation(tmpStrPath='',tmpTrajFile='handmade.traj',tmpFilesNu
 				final_tci_fileName = filnameNoExt + '.tci.final'
 				final_z_fileName = filnameNoExt + '.z.final'
 				#### GO INTO THE FOLDER
-				os.chdir(os.path.dirname(os.path.abspath(trajFile)))
+				os.chdir(os.path.dirname(os.path.abspath(tmpTrajFile)))
 			
 				exeRight = 1
 				if os.path.isfile(filname):
