@@ -32,7 +32,7 @@ if __name__ == '__main__':
 			for trajFile in trajFiles: # For each file
 				count += 1
 				# File name extraction and extension removing 
-				cil.clusterIndexComputation(tmpStrPath='',tmpTrajFile=trajFile,tmpFilesNumber=filesNumber,tmpSamplingMethod=sampleType, tmpCount=count)
+				cil.clusterIndexComputation(tmpStrPath='',tmpTrajFile=trajFile,tmpFilesNumber=args.filesNumber,tmpSamplingMethod=args.sampleType, tmpCount=count)
 				# filname = os.path.basename(trajFile)
 # 				filnameNoExt = os.path.splitext(filname)[0]
 # 				# Compute the analysis progress 
